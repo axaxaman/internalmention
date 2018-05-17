@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JSON PARSER</title>
+    <style>
+        table{
+            margin: auto;
+            width: 80vw;
+            border-spacing: 2px;
+        }
+        td{
+            border-bottom: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>URL</th>
+                <th>Title</th>
+                <th>H1</th>
+                <th>Description</th>
+                <th>Где упоминается</th>
+                <th>Каким текстом</th>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+
+        </tbody>
+    </table>
+    <script src="localhost.js" type="text/javascript"></script>
+    <script>
+        function objectToTableHtml(obj){
+            var html = [];
+            var tr = document.createElement("tr");
+            tr.innerHTML =  "<tr><td>" + obj.name + "</td><td>" + obj.title + "</td><td>" + obj.h1 + "</td><td>" + obj.description + "</td><td></td><td></td></tr>";
+            html.push(tr);
+            
+            // work with dict
+            for ( var link in obj.dict){
+                var tr = document.createElement("tr");
+                tr.innerHTML =  "<tr><td></td><td></td><td></td><td></td><td>"+link+"</td><td>"+obj.dict[link]+"</td></tr>";
+                html.push(tr);
+            }
+
+            return html; 
+        }
+       for ( var key in data){
+           var html = objectToTableHtml(data[key]);
+           for (var nd = 0; nd < html.length; nd++){
+                tbody.appendChild(html[nd]);
+           }
+       }
+    </script>
+</body>
+</html>
